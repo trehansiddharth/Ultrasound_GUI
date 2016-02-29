@@ -18,6 +18,8 @@ currentStatus = {status.scopeUninitialized, status.transducerNotCollectingData, 
 
 % Global variable for data we collect so we can save it later
 global collectedData;
+global collected1DData;
+collected1DData = 0;
 
 % Initialize GUI objects
 initializeInterface;
