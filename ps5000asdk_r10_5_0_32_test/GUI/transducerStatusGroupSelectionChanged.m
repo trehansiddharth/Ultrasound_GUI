@@ -14,6 +14,7 @@ switch selectedOption
             pause(0.005);
         end
         collectedData = scanningData;
+        collected1DData = 1;
     case 'btnCollect2DScanData'
         %set(ps5000aDeviceObj, 'numCaptures', 100);
         currentStatus(2) = {status.transducerCollecting2DScanData};
@@ -31,6 +32,7 @@ switch selectedOption
             i = i + 1;
         end
         collectedData = dataA;
+        collected1DData = 0;
     case 'btnDontCollectData'
         currentStatus(2) = {status.transducerNotCollectingData};
 end
