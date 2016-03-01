@@ -11,7 +11,7 @@ switch selectedOption
         scopeStatus.timebase = 3;                       % time interval for data collection (also sampling frequency can be computed)
         scopeStatus.numCaptures = 2;                  % was 1000
         scopeStatus.startTime = 0e-6;                   % start to collect data
-        scopeStatus.stopTime = 500e-6;                  % end collection of data
+        scopeStatus.stopTime = 200e-6;                  % end collection of data
         scopeStatus.channelSetting.a.enable = 1;        % enable channel A
         scopeStatus.channelSetting.a.range = '500mv';      %50mV
         scopeStatus.channelSetting.b.enable = false;    % disable channel B
