@@ -1,4 +1,4 @@
-selectedOption = get(get(transducerStatusGroup, 'SelectedObject'), 'Tag')
+selectedOption = get(get(transducerStatusGroup, 'SelectedObject'), 'Tag');
 
 switch selectedOption
     case 'btnCollect1DScanData'

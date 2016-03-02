@@ -1,2 +1,2 @@
-txtScopeStatus.String = currentStatus(1);
-txtTransducerStatus.String = currentStatus(2);
+set(txtScopeStatus, 'String', currentStatus(1));
+set(txtTransducerStatus, 'String', currentStatus(2));

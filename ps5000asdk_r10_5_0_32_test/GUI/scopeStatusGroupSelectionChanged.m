@@ -1,4 +1,4 @@
-selectedOption = scopeStatusGroup.SelectedObject.Tag;
+selectedOption = get(get(scopeStatusGroup, 'SelectedObject'), 'Tag');
 
 switch selectedOption
     case 'btnInitializeScope'
@@ -30,14 +30,14 @@ switch selectedOption
         % Display
         fprintf('The scope has been initialized and is ready to collect data \n');
         
-        transducerStatusGroup.Visible = 'On';
+        set(transducerStatusGroup, 'Visible', 'On');
         currentStatus(1) = {status.scopeInitialized};
         setCurrentStatus;
     case 'btnDeinitializeScope'        
         deinitializeScope;
         fprintf('The scope has been deinitialized');
         
-        transducerStatusGroup.Visible = 'Off';
+        set(transducerStatusGroup, 'Visible', 'Off');
         currentStatus(1) = {status.scopeUninitialized};
         setCurrentStatus;
 end
