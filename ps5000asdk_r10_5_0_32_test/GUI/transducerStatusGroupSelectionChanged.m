@@ -8,10 +8,15 @@ switch selectedOption
         try
             while strcmp(currentStatus(2), status.transducerCollecting1DScanData)
                 [scanningData, elapseTime] = runScope1Ch();
-                plot(sum(scanningData)./size(scanningData,1))
+                currentData = sum(scanningData)./size(scanningData,1);
+                %echoes = find_ultrasound_echoes(currentData);
+                %echo_locations = echoes(:,1);
+                %echo_heights = collectedData(1,echo_locations)';
+                plot(currentData, 'b', echo_locations, echo_heights, 'b*');
                 ylabel('Voltage (V)');
                 xlabel('Data Number');
                 title('Pulse-Echo Response');
+                ylim([-0.5 0.5])
                 pause(0.005);
             end
         catch ex

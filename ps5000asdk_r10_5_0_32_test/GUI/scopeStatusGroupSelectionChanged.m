@@ -12,15 +12,15 @@ switch selectedOption
         scopeStatus.numCaptures = 2;                  % was 1000
         scopeStatus.startTime = 0e-6;                   % start to collect data
         scopeStatus.stopTime = 200e-6;                  % end collection of data
-        scopeStatus.channelSetting.a.enable = 1;        % enable channel A
-        scopeStatus.channelSetting.a.range = '500mv';      %50mV
-        scopeStatus.channelSetting.b.enable = false;    % disable channel B
-        scopeStatus.channelSetting.b.range = '20mv';    %1v
+        scopeStatus.channelSetting.a.enable = 0;        % enable channel A
+        scopeStatus.channelSetting.a.range = '20mv';      %50mV
+        scopeStatus.channelSetting.b.enable = 1;    % disable channel B
+        scopeStatus.channelSetting.b.range = '500mv';    %1v
         scopeStatus.channelSetting.c.enable = 0;        % disable channel C
         scopeStatus.channelSetting.c.range = '50mv';    %1v
         scopeStatus.channelSetting.d.enable = 0;
         scopeStatus.channelSetting.d.range = '100mv';   %1v
-        scopeStatus.triggerSetting.source = 'A';
+        scopeStatus.triggerSetting.source = 'B';
         scopeStatus.triggerSetting.threshold = 0.5;     %originally 1.65
         scopeStatus.triggerSetting.edge = 'rising';
 
