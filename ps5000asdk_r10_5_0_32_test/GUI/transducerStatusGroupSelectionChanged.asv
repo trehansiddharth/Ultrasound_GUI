@@ -20,7 +20,7 @@ switch selectedOption
                 echo_heights = currentData(1,echo_locations)'
                 
                 % Plot the sample data
-                noiseAmplitude = 0; %mean(abs(echo_heights)) / 2;
+                noiseAmplitude = mean(abs(echo_heights)) / 2;
                 noise = normrnd(0, noiseAmplitude, 1, numPoints);
                 plot(1:numPoints, (currentData + noise)');
                 
