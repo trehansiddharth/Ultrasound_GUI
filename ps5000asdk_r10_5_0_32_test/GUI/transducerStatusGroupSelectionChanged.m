@@ -5,7 +5,7 @@ switch selectedOption
         %set(ps5000aDeviceObj, 'numCaptures', 2);
         currentStatus(2) = {status.transducerCollecting1DScanData};
         setCurrentStatus;
-        %try
+        try
             while strcmp(currentStatus(2), status.transducerCollecting1DScanData)
                 % Run data collection
                 [scanningData, elapseTime] = runScope1Ch();
@@ -35,10 +35,11 @@ switch selectedOption
                 ylabel('Voltage (V)');
                 xlabel('Data Number');
                 title('Pulse-Echo Response');
+                ylim([-0.5 0.5])
                 pause(0.005);
             end
-        %catch ex
-        %end
+        catch ex
+        end
         collectedData = scanningData;
         collected1DData = 1;
     case 'btnCollect2DScanData'
