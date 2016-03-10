@@ -5,7 +5,8 @@ switch selectedOption
         %set(ps5000aDeviceObj, 'numCaptures', 2);
         currentStatus(2) = {status.transducerCollecting1DScanData};
         setCurrentStatus;
-        try
+        
+        %try
             while strcmp(currentStatus(2), status.transducerCollecting1DScanData)
                 % Run data collection
                 [scanningData, elapseTime] = runScope1Ch();
@@ -20,7 +21,7 @@ switch selectedOption
                 echo_heights = currentData(1,echo_locations)'
                 
                 % Plot the sample data
-                noiseAmplitude = 0; %mean(abs(echo_heights)) / 2;
+                noiseAmplitude = 0.11; %mean(abs(echo_heights)) / 2;
                 noise = normrnd(0, noiseAmplitude, 1, numPoints);
                 plot(1:numPoints, (currentData + noise)');
                 
@@ -38,8 +39,8 @@ switch selectedOption
                 ylim([-0.5 0.5])
                 pause(0.005);
             end
-        catch ex
-        end
+        %catch ex
+        %end
         collectedData = scanningData;
         collected1DData = 1;
     case 'btnCollect2DScanData'
