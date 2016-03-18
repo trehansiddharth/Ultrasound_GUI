@@ -14,7 +14,7 @@ switch selectedOption
         scopeStatus.stopTime = 200e-6;                  % end collection of data
         scopeStatus.channelSetting.a.enable = 1;        % enable channel A
         scopeStatus.channelSetting.a.range = '500mv';      %50mV
-        scopeStatus.channelSetting.b.enable = false;    % disable channel B
+        scopeStatus.channelSetting.b.enable = 0;    % disable channel B
         scopeStatus.channelSetting.b.range = '20mv';    %1v
         scopeStatus.channelSetting.c.enable = 0;        % disable channel C
         scopeStatus.channelSetting.c.range = '50mv';    %1v
