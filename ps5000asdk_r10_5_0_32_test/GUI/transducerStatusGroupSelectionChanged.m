@@ -5,29 +5,52 @@ switch selectedOption
         %set(ps5000aDeviceObj, 'numCaptures', 2);
         currentStatus(2) = {status.transducerCollecting1DScanData};
         setCurrentStatus;
-        try
+        %try
             while strcmp(currentStatus(2), status.transducerCollecting1DScanData)
+                % Run data collection
                 [scanningData, elapseTime] = runScope1Ch();
-                plot(sum(scanningData)./size(scanningData,1))
+                
+                % Average the collected samples
+                [numSamples, numPoints] = size(scanningData);
+                currentData = sum(scanningData)./numSamples;
+                
+                % Find the echoes
+                echoes = find_ultrasound_echoes(currentData')
+                echo_locations = echoes(:,1)
+                echo_heights = currentData(1,echo_locations)'
+                
+                % Plot the sample data
+                noiseAmplitude = 0.11; %mean(abs(echo_heights)) / 2;
+                noise = normrnd(0, noiseAmplitude, 1, numPoints);
+                plot(1:numPoints, (currentData + noise)');
+                
+                % Plot vertical lines where the echoes are
+                hold on
+                for loc = echo_locations'
+                    plot(loc * [1 1], ylim, 'r--')
+                end
+                hold off
+                
+                % Label axes
                 ylabel('Voltage (V)');
                 xlabel('Data Number');
                 title('Pulse-Echo Response');
                 pause(0.005);
             end
-        catch ex
-        end
+        %catch ex
+        %end
         collectedData = scanningData;
         collected1DData = 1;
     case 'btnCollect2DScanData'
         %set(ps5000aDeviceObj, 'numCaptures', 100);
         currentStatus(2) = {status.transducerCollecting2DScanData};
         setCurrentStatus;
-        try
+        %try
             i = 1;
             while strcmp(currentStatus(2), status.transducerCollecting2DScanData)
                 fprintf('Capture Number %d\n', i);
-                [dataA, elapseTime] = runScope1Ch();
-                size(dataA)
+                [dataIn, elapseTime] = runScope1Ch();
+                dataA(i,:) = dataIn(1,:);
                 imagesc(abs(dataA(1:i,:)'), [-0.2 0.2]);
                 xlabel('Scan Number');
                 ylabel('Sample Number');
@@ -35,8 +58,8 @@ switch selectedOption
                 pause(0.05);
                 i = i + 1;
             end
-        catch ex
-        end
+        %catch ex
+        %end
         collectedData = dataA;
         collected1DData = 0;
     case 'btnDontCollectData'
